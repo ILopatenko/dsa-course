@@ -14,6 +14,8 @@ class LinkedList {
       return this;
    }
 
+   //HELPERS FOR MAIN METHODS
+
    dropLinkedList() {
       this.head = null;
       this.tail = null;
@@ -34,6 +36,8 @@ class LinkedList {
       }
       return this;
    }
+
+   //MAIN METHODS
 
    addNodeToHead(value) {
       if (this.length <= 0) return this.addFirstNode(value);
@@ -76,6 +80,17 @@ class LinkedList {
       this.tail.next = null;
       this.length--;
       return this;
+   }
+
+   //ADDITIONAL HELPERS
+   returnNodesValuesAsArrayHeadToTail() {
+      const result = [];
+      let current = this.head;
+      while (current) {
+         result.push(current.value);
+         current = current.next;
+      }
+      return result;
    }
 }
 
