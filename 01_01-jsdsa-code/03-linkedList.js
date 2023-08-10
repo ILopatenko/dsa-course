@@ -14,42 +14,43 @@ class LinkedList {
       return this;
    }
 
-   addToHead(value) {
+   dropLinkedList() {
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+      return this;
+   }
+
+   deleteLastNodeOrNodeFromEmptyLinkedList() {
+      if (this.head || this.tail || this.length <= 1) return this.dropLinkedList();
+   }
+
+   addFirstNode(value) {
       const newNode = new Node(value);
-      if (!this.head || !this.tail || this.length === 0) {
+      if (!this.head || !this.tail || this.length <= 0) {
          this.head = newNode;
          this.tail = newNode;
-      } else {
-         newNode.next = this.head;
-         this.head = newNode;
+         this.length = 1;
       }
+      return this;
+   }
+
+   addNodeToHead(value) {
+      if (this.length <= 0) return this.addFirstNode(value);
+      const newNode = new Node(value);
+      newNode.next = this.head;
+      this.head = newNode;
       this.length++;
       return this;
    }
 
-   removefromHead(value) {
-      if (!this.head || !this.tail || this.length === 0) return undefined;
+   deleteNodeFromHead() {
+      if (this.length <= 1 || !this.head || !this.tail)
+         return this.deleteLastNodeOrNodeFromEmptyLinkedList();
       const temp = this.head;
       temp.next = null;
-      if (this.length === 1) {
-         this.head = null;
-         this.tail = null;
-      }
       this.head = this.head.next;
       this.length--;
-      return this;
-   }
-
-   addToTail(value) {
-      const newNode = new Node(value);
-      if (!this.head || !this.tail || this.length === 0) {
-         this.head = newNode;
-         this.tail = newNode;
-      } else {
-         this.tail.next = newNode;
-         this.tail = newNode;
-      }
-      this.length++;
       return this;
    }
 }
