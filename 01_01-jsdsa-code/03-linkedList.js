@@ -27,6 +27,19 @@ class LinkedList {
       return this;
    }
 
+   removefromHead(value) {
+      if (!this.head || !this.tail || this.length === 0) return undefined;
+      const temp = this.head;
+      temp.next = null;
+      if (this.length === 1) {
+         this.head = null;
+         this.tail = null;
+      }
+      this.head = this.head.next;
+      this.length--;
+      return this;
+   }
+
    addToTail(value) {
       const newNode = new Node(value);
       if (!this.head || !this.tail || this.length === 0) {
