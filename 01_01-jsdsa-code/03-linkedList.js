@@ -53,6 +53,30 @@ class LinkedList {
       this.length--;
       return this;
    }
+
+   addNodeToTail(value) {
+      if (this.length <= 0) return this.addFirstNode(value);
+      const newNode = new Node(value);
+      this.tail.next = newNode;
+      this.tail = newNode;
+      this.length++;
+      return this;
+   }
+
+   deleteNodeFromTail() {
+      if (this.length <= 1 || !this.head || !this.tail)
+         return this.deleteLastNodeOrNodeFromEmptyLinkedList();
+      let prev = this.head;
+      let current = prev;
+      while (current.next) {
+         prev = current;
+         current = current.next;
+      }
+      this.tail = prev;
+      this.tail.next = null;
+      this.length--;
+      return this;
+   }
 }
 
 module.exports = { Node, LinkedList };
