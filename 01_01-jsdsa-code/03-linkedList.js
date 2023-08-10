@@ -92,6 +92,18 @@ class LinkedList {
       }
       return result;
    }
+
+   addNodesFromArrayToHead(array) {
+      for (let i = array.length - 1; i >= 0; i--) {
+         this.addNodeToHead(array[i]);
+      }
+      return this;
+   }
+
+   addNodesFromArrayToTail(array) {
+      array.forEach(el => this.addNodeToTail(el));
+      return this;
+   }
 }
 
-module.exports = { Node, LinkedList };
+module.exports = LinkedList;
