@@ -7,7 +7,6 @@ testLinkedList1
    .deleteNodeFromHead()
    .addNodeToTail(111)
    .addNodeToTail(222)
-   .deleteNodeFromTail()
-   .deleteNodeFromHead();
+   .addNodeToHead(666);
 
-console.log(testLinkedList1.returnNodesValuesAsArrayHeadToTail());
+console.log(testLinkedList1.setValueByIndex(2, 1000).returnNodesValuesAsArrayHeadToTail());

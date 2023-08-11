@@ -88,6 +88,37 @@ class LinkedList {
       return this;
    }
 
+   //GET BY
+   //RETURN POINTER TO THE NODE (RETURNED NODE LINKED TO ANOTHER - IF APPLICABLE)
+   getPointerToNodeByIndex(index) {
+      if (index === 0) return this.head;
+      if (index === this.length - 1) return this.tail;
+      if (index < 0 || index >= this.length) return undefined;
+      let counter = 0;
+      let temp = this.head;
+      while (counter < index) {
+         temp = temp.next;
+         counter++;
+      }
+      return temp;
+   }
+   //RETURNS A SINGLE NODE
+   getNodeByIndex(index) {
+      const result = this.getPointerToNodeByIndex(index);
+      result.next = null;
+      return result;
+   }
+   //RETURNS A VALUE OF NODE
+   getValueByIndex(index) {
+      return this.getNodeByIndex(index).value;
+   }
+
+   setValueByIndex(index, value) {
+      const node = this.getPointerToNodeByIndex(index);
+      node.value = value;
+      return this;
+   }
+
    //ADDITIONAL HELPERS
    returnNodesValuesAsArrayHeadToTail() {
       const result = [];
