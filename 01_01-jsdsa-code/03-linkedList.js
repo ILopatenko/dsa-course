@@ -16,6 +16,14 @@ class LinkedList {
 
    //HELPERS FOR MAIN METHODS
 
+   isLinkedListEmpty() {
+      return !this.head || !this.tail || this.length <= 0 ? true : false;
+   }
+
+   isLinkedListEmptyOrHasOneNode() {
+      return this.isLinkedListEmpty() || this.length === 1 ? true : false;
+   }
+
    dropLinkedList() {
       this.head = null;
       this.tail = null;
@@ -24,23 +32,21 @@ class LinkedList {
    }
 
    deleteLastNodeOrNodeFromEmptyLinkedList() {
-      if (this.head || this.tail || this.length <= 1) return this.dropLinkedList();
+      return this.dropLinkedList();
    }
 
    addFirstNode(value) {
       const newNode = new Node(value);
-      if (!this.head || !this.tail || this.length <= 0) {
-         this.head = newNode;
-         this.tail = newNode;
-         this.length = 1;
-      }
+      this.head = newNode;
+      this.tail = newNode;
+      this.length = 1;
       return this;
    }
 
    //MAIN METHODS
 
    addNodeToHead(value) {
-      if (this.length <= 0) return this.addFirstNode(value);
+      if (this.isLinkedListEmpty()) return this.addFirstNode(value);
       const newNode = new Node(value);
       newNode.next = this.head;
       this.head = newNode;
@@ -49,7 +55,7 @@ class LinkedList {
    }
 
    deleteNodeFromHead() {
-      if (this.length <= 1 || !this.head || !this.tail)
+      if (this.isLinkedListEmptyOrHasOneNode())
          return this.deleteLastNodeOrNodeFromEmptyLinkedList();
       const temp = this.head;
       temp.next = null;
@@ -59,7 +65,7 @@ class LinkedList {
    }
 
    addNodeToTail(value) {
-      if (this.length <= 0) return this.addFirstNode(value);
+      if (this.isLinkedListEmpty()) return this.addFirstNode(value);
       const newNode = new Node(value);
       this.tail.next = newNode;
       this.tail = newNode;
@@ -68,7 +74,7 @@ class LinkedList {
    }
 
    deleteNodeFromTail() {
-      if (this.length <= 1 || !this.head || !this.tail)
+      if (this.isLinkedListEmptyOrHasOneNode())
          return this.deleteLastNodeOrNodeFromEmptyLinkedList();
       let prev = this.head;
       let current = prev;
